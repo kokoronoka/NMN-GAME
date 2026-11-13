@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e0824">
+  <meta name="color-scheme" content="dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ZÉLL-V NAD+">
+  <meta name="description" content="Power Up Your Body with NAD+ — a ZÉLL-V NMN mini game.">
+  <title>Power Up Your Body with NAD+ · ZÉLL-V NMN</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <link rel="preload" href="assets/fonts/syne-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <div class="bg" aria-hidden="true"><div class="bg-glow bg-glow-a"></div><div class="bg-glow bg-glow-b"></div></div>
+
+    <!-- shared graphics for the shield game -->
+    <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="g-radical" cx="0.38" cy="0.35" r="0.7">
+          <stop offset="0" stop-color="#f6ffb0"/><stop offset="0.5" stop-color="#c8f03c"/><stop offset="1" stop-color="#ff8a1f"/>
+        </radialGradient>
+        <linearGradient id="g-shield" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ff6b6b"/><stop offset="0.55" stop-color="#d0142f"/><stop offset="1" stop-color="#7d0a1e"/>
+        </linearGradient>
+        <radialGradient id="g-cell" cx="0.35" cy="0.35" r="0.7">
+          <stop offset="0" stop-color="#ffffff" stop-opacity="0.6"/><stop offset="1" stop-color="#b996ff" stop-opacity="0.3"/>
+        </radialGradient>
+        <symbol id="sym-radical" viewBox="-16 -16 32 32">
+          <circle r="15" fill="#d6ff5a" fill-opacity="0.18"/>
+          <path d="M0.0,-12.0 L2.2,-6.8 L7.1,-9.7 L5.8,-4.2 L11.4,-3.7 L7.2,0.0 L11.4,3.7 L5.8,4.2 L7.1,9.7 L2.2,6.8 L0.0,12.0 L-2.2,6.8 L-7.1,9.7 L-5.8,4.2 L-11.4,3.7 L-7.2,0.0 L-11.4,-3.7 L-5.8,-4.2 L-7.1,-9.7 L-2.2,-6.8Z" fill="url(#g-radical)" stroke="rgba(40,20,0,0.35)" stroke-width="0.8"/>
+          <circle cx="11" cy="-11" r="2.4" fill="#fff"/>
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="topbar">
+      <button class="brand" id="brand-btn" type="button" aria-label="ZÉLL-V NMN">
+        <span class="brand-mark">ZÉLL-V</span><span class="brand-sub">NMN</span>
+      </button>
+      <div class="topbar-end">
+        <div class="lang-switch" id="lang-switch" role="group"></div>
+        <button class="fs-btn" id="fs-btn" type="button" aria-label="Full screen" aria-pressed="false" hidden>
+          <svg class="fs-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
+          <svg class="fs-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"/></svg>
+        </button>
+      </div>
+    </header>
+    <p class="fs-hint" id="fs-hint" role="status" hidden></p>
+
+    <main class="screens">
+      <!-- 1. START -->
+      <section class="screen screen-start is-active" id="screen-start" data-screen="start" aria-labelledby="start-title">
+        <div class="start-inner">
+          <!-- Game tabs -->
+          <div class="game-tabs" role="tablist" id="game-tabs">
+            <button class="game-tab" role="tab" type="button" id="tab-nad" data-game="nad" aria-controls="start-panel-nad" aria-selected="true">
+              <span class="tab-icon tab-icon-nad" aria-hidden="true"></span><span data-i18n="start.tab"></span>
+            </button>
+            <button class="game-tab" role="tab" type="button" id="tab-shield" data-game="shield" aria-controls="start-panel-shield" aria-selected="false" tabindex="-1">
+              <span class="tab-icon tab-icon-shield" aria-hidden="true"></span><span data-i18n="shield.tab"></span>
+            </button>
+          </div>
+
+          <!-- Game 1: NAD+ body -->
+          <div class="start-panel" id="start-panel-nad" role="tabpanel" aria-labelledby="tab-nad">
+            <div class="start-orbs" aria-hidden="true">
+              <span class="orb orb-deco"><span class="orb-core"><span class="orb-text">NAD+</span></span></span>
+              <span class="orb orb-deco"><span class="orb-core"><span class="orb-text">NAD+</span></span></span>
+              <span class="orb orb-deco"><span class="orb-core"><span class="orb-text">NAD+</span></span></span>
+            </div>
+            <p class="eyebrow" data-i18n="start.eyebrow"></p>
+            <h1 class="title" id="start-title" data-i18n="start.title"></h1>
+            <p class="hook" data-i18n="start.hook"></p>
+            <button class="btn btn-primary btn-xl" id="start-btn" type="button" data-i18n="start.button"></button>
+          </div>
+
+          <!-- Game 2: AstaReal® Astaxanthin shield -->
+          <div class="start-panel" id="start-panel-shield" role="tabpanel" aria-labelledby="tab-shield" hidden>
+            <svg class="shield-hero" viewBox="0 0 240 130" aria-hidden="true">
+              <use class="hero-r hero-r1" href="#sym-radical" x="30" y="6" width="30" height="30"/>
+              <use class="hero-r hero-r2" href="#sym-radical" x="104" y="0" width="34" height="34"/>
+              <use class="hero-r hero-r3" href="#sym-radical" x="178" y="14" width="26" height="26"/>
+              <rect x="60" y="66" width="120" height="16" rx="8" fill="url(#g-shield)" class="hero-shield"/>
+              <path d="M70,71 H170" stroke="#fff" stroke-opacity="0.55" stroke-width="2.4" stroke-linecap="round"/>
+              <g class="hero-cells" fill="url(#g-cell)">
+                <circle cx="20" cy="116" r="11"/><circle cx="50" cy="112" r="11"/><circle cx="80" cy="116" r="11"/><circle cx="110" cy="112" r="11"/>
+                <circle cx="140" cy="116" r="11"/><circle cx="170" cy="112" r="11"/><circle cx="200" cy="116" r="11"/><circle cx="230" cy="112" r="11"/>
+              </g>
+            </svg>
+            <p class="eyebrow" data-i18n="shield.eyebrow"></p>
+            <h1 class="title title-shield" data-i18n="shield.title"></h1>
+            <p class="hook" id="shield-hook"></p>
+            <button class="btn btn-primary btn-xl btn-shield" id="shield-start-btn" type="button" data-i18n="start.button"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. HOW TO -->
+      <section class="screen screen-howto" id="screen-howto" data-screen="howto" aria-labelledby="howto-title">
+        <div class="howto-inner">
+          <h2 class="h2" id="howto-title" data-i18n="howto.title"></h2>
+          <div class="howto-demo" aria-hidden="true">
+            <svg class="demo-organ" viewBox="176 186 80 92">
+              <defs>
+                <linearGradient id="demo-shade" x1="0.15" y1="0" x2="0.6" y2="1">
+                  <stop offset="0" stop-color="#fff" stop-opacity="0.42"/><stop offset="0.45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#12052e" stop-opacity="0.5"/>
+                </linearGradient>
+              </defs>
+              <ellipse class="demo-halo" cx="216" cy="236" rx="38" ry="44"/>
+              <path class="demo-vessel" d="M207,214 C204,199 213,190 223,192 C231,194 233,204 231,214 M200,220 V194 M216,212 C214,204 220,198 228,201"/>
+              <path class="demo-heart" d="M200,216 C202.9,213.4 207.8,210.6 212,210 C216.2,209.4 222.3,210.2 226,212 C229.7,213.8 232.9,217 235,221 C237.1,225 238.8,231.9 239,237 C239.2,242.1 237.9,248.7 236,253 C234.1,257.3 229.4,261.3 227,264 C224.6,266.7 223.6,269.7 221,270 C218.4,270.3 214.4,268.2 211,266 C207.6,263.8 202.9,259.8 200,256 C197.1,252.2 194,246.8 193,242 C192,237.2 192.9,230.2 194,226 C195.1,221.8 197.1,218.6 200,216Z"/>
+              <path d="M200,216 C202.9,213.4 207.8,210.6 212,210 C216.2,209.4 222.3,210.2 226,212 C229.7,213.8 232.9,217 235,221 C237.1,225 238.8,231.9 239,237 C239.2,242.1 237.9,248.7 236,253 C234.1,257.3 229.4,261.3 227,264 C224.6,266.7 223.6,269.7 221,270 C218.4,270.3 214.4,268.2 211,266 C207.6,263.8 202.9,259.8 200,256 C197.1,252.2 194,246.8 193,242 C192,237.2 192.9,230.2 194,226 C195.1,221.8 197.1,218.6 200,216Z" fill="url(#demo-shade)"/>
+              <path class="demo-detail" d="M214,212 C222,230 224,250 222,268 M200,232 C206,236 210,244 210,254"/>
+            </svg>
+            <div class="demo-mover">
+              <span class="orb demo-orb"><span class="orb-core"><span class="orb-text">NAD+</span></span></span>
+              <svg class="demo-hand" viewBox="0 0 48 56">
+                <path d="M17 4.5a4.5 4.5 0 0 1 9 0V24l2-.4V20a4 4 0 0 1 8 0v4.3l1-.2a4 4 0 0 1 7 2.7v12.7C44 47.6 37.6 54 29.7 54h-3.2c-4.4 0-8.6-2-11.3-5.6L5.4 35.6a4.2 4.2 0 0 1 6.3-5.5l5.3 5V4.5Z"/>
+              </svg>
+            </div>
+          </div>
+          <p class="howto-text" data-i18n="howto.text"></p>
+          <p class="howto-sub" data-i18n="howto.tapHint"></p>
+          <button class="btn btn-primary btn-xl" id="howto-btn" type="button" data-i18n="howto.button"></button>
+        </div>
+      </section>
+
+      <!-- 3 + 4. PLAY / REVEAL (same body, two modes) -->
+      <section class="screen screen-game" id="screen-game" data-screen="game" data-mode="play">
+        <div class="stage" id="stage">
+          <p class="stage-pill"><span id="play-instruction"></span> <span class="pill-count" id="remaining"></span></p>
+          <div class="organ-label" id="organ-label" aria-hidden="true"></div>
+        </div>
+
+        <aside class="panel">
+          <div class="panel-play" id="panel-play">
+            <button class="btn btn-ghost btn-undo" id="undo-btn" type="button" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+              <span class="undo-text" data-i18n="play.undo"></span>
+            </button>
+            <div class="tray" id="tray" role="group"></div>
+            <button class="btn btn-primary btn-xl btn-reveal" id="reveal-btn" type="button" data-i18n="play.reveal" hidden></button>
+          </div>
+
+          <div class="panel-reveal" id="panel-reveal" hidden>
+            <p class="eyebrow" data-i18n="reveal.title"></p>
+            <h2 class="h2 reveal-score" id="reveal-score"></h2>
+            <p class="reveal-msg" id="reveal-msg"></p>
+            <div class="chip-group">
+              <p class="chip-label" id="reveal-top-label"></p>
+              <ul class="chips" id="reveal-top5"></ul>
+            </div>
+            <p class="reveal-whole" id="reveal-whole" data-i18n="reveal.wholeBody"></p>
+            <button class="btn btn-primary btn-xl" id="learn-btn" type="button" data-i18n="reveal.button"></button>
+          </div>
+        </aside>
+      </section>
+
+      <!-- SHIELD GAME: how to -->
+      <section class="screen screen-howto" id="screen-shield-howto" data-screen="shield-howto" aria-labelledby="shield-howto-title">
+        <div class="howto-inner">
+          <h2 class="h2" id="shield-howto-title" data-i18n="shield.howtoTitle"></h2>
+          <div class="shield-demo" aria-hidden="true">
+            <svg class="sd-r sd-r1" viewBox="-16 -16 32 32"><use href="#sym-radical" x="-16" y="-16" width="32" height="32"/></svg>
+            <svg class="sd-r sd-r2" viewBox="-16 -16 32 32"><use href="#sym-radical" x="-16" y="-16" width="32" height="32"/></svg>
+            <svg class="sd-r sd-r3" viewBox="-16 -16 32 32"><use href="#sym-radical" x="-16" y="-16" width="32" height="32"/></svg>
+            <div class="sd-mover">
+              <span class="sd-bar"></span>
+              <svg class="demo-hand sd-hand" viewBox="0 0 48 56">
+                <path d="M17 4.5a4.5 4.5 0 0 1 9 0V24l2-.4V20a4 4 0 0 1 8 0v4.3l1-.2a4 4 0 0 1 7 2.7v12.7C44 47.6 37.6 54 29.7 54h-3.2c-4.4 0-8.6-2-11.3-5.6L5.4 35.6a4.2 4.2 0 0 1 6.3-5.5l5.3 5V4.5Z"/>
+              </svg>
+            </div>
+            <div class="sd-cells"></div>
+          </div>
+          <p class="howto-text" id="shield-howto-text"></p>
+          <button class="btn btn-primary btn-xl btn-shield" id="shield-howto-btn" type="button" data-i18n="shield.howtoButton"></button>
+        </div>
+      </section>
+
+      <!-- SHIELD GAME: play -->
+      <section class="screen screen-shield" id="screen-shield" data-screen="shield">
+        <div class="shield-hud">
+          <div class="hearts" id="shield-hearts" role="img"></div>
+          <div class="shield-timer">
+            <div class="shield-timer-track"><div class="shield-timer-fill" id="shield-timer-fill"></div></div>
+            <span class="shield-time" id="shield-time"></span>
+          </div>
+          <div class="shield-blocked" id="shield-blocked" aria-live="polite"></div>
+        </div>
+        <div class="shield-stage">
+          <canvas id="shield-canvas"></canvas>
+          <div class="shield-flash" id="shield-flash" aria-hidden="true"></div>
+        </div>
+        <div class="shield-result" id="shield-result" hidden>
+          <div class="dialog">
+            <svg class="result-shield" viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M32 4 54 12v18c0 14-9.6 24.4-22 30C19.6 54.4 10 44 10 30V12L32 4Z" fill="url(#g-shield)"/>
+              <path d="M22 32l7 7 13-14" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h2 class="h2" id="shield-result-title"></h2>
+            <p class="reveal-msg" id="shield-result-text"></p>
+            <div class="hearts hearts-result" id="shield-result-hearts" role="img"></div>
+            <button class="btn btn-primary btn-xl" id="shield-result-btn" type="button" data-i18n="shield.resultButton"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. LEARN -->
+      <section class="screen screen-learn" id="screen-learn" data-screen="learn" aria-labelledby="learn-title">
+        <div class="learn-head">
+          <h2 class="h2" id="learn-title" data-i18n="learn.title"></h2>
+          <p class="learn-hint" data-i18n="learn.swipeHint"></p>
+        </div>
+        <div class="cards" id="cards" tabindex="0"></div>
+        <div class="cards-nav">
+          <button class="btn btn-round" id="card-prev" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="dots" id="card-dots" aria-hidden="true"></div>
+          <button class="btn btn-round" id="card-next" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="learn-foot">
+          <button class="btn btn-primary" id="finish-btn" type="button" data-i18n="learn.button"></button>
+          <p class="disclaimer" data-i18n="disclaimer"></p>
+        </div>
+      </section>
+
+      <!-- 6. END -->
+      <section class="screen screen-end" id="screen-end" data-screen="end" aria-labelledby="end-title">
+        <div class="end-inner">
+          <div class="badge" aria-hidden="true">
+            <svg class="badge-svg-nad" viewBox="0 0 120 120">
+              <circle class="badge-ring" cx="60" cy="60" r="54"/>
+              <circle class="badge-core" cx="60" cy="60" r="44"/>
+              <path class="badge-bolt" d="M66 26 42 66h16l-6 28 26-42H62l4-26Z"/>
+            </svg>
+            <svg class="badge-svg-shield" viewBox="0 0 120 120">
+              <circle class="badge-ring" cx="60" cy="60" r="54"/>
+              <path d="M60 22 88 32v22c0 18-12 31-28 38-16-7-28-20-28-38V32l28-10Z" fill="url(#g-shield)" stroke="#ffd3d9" stroke-width="2"/>
+              <path d="M47 58l9 9 17-18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="eyebrow" id="end-title" data-i18n="end.title"></p>
+          <h2 class="h1 badge-title" id="badge-title"></h2>
+          <p class="badge-text" id="badge-text"></p>
+          <p class="score-line" id="score-line"></p>
+          <div class="cta">
+            <p class="cta-title" data-i18n="end.ctaTitle"></p>
+            <p class="cta-text" data-i18n="end.ctaText"></p>
+            <p class="cta-stamp" id="cta-stamp"></p>
+          </div>
+          <button class="btn btn-primary btn-xl" id="again-btn" type="button" data-i18n="end.button"></button>
+          <p class="disclaimer" data-i18n="disclaimer"></p>
+        </div>
+      </section>
+    </main>
+
+    <div class="fx-layer" id="fx-layer" aria-hidden="true"></div>
+
+    <!-- Idle "Still there?" -->
+    <div class="overlay" id="idle-overlay" role="alertdialog" aria-modal="true" aria-labelledby="idle-title" hidden>
+      <div class="dialog">
+        <p class="h2" id="idle-title" data-i18n="idle.title"></p>
+        <p class="idle-count" id="idle-count"></p>
+        <button class="btn btn-primary btn-xl" id="idle-btn" type="button" data-i18n="idle.button"></button>
+      </div>
+    </div>
+
+    <!-- Hidden admin (tap logo 5x) -->
+    <div class="overlay" id="admin-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-title" hidden>
+      <div class="dialog dialog-admin">
+        <p class="h2" id="admin-title" data-i18n="admin.title"></p>
+        <dl class="stats" id="admin-stats"></dl>
+        <p class="admin-note" id="admin-note"></p>
+        <div class="dialog-actions">
+          <button class="btn btn-ghost" id="admin-reset" type="button" data-i18n="admin.reset"></button>
+          <button class="btn btn-primary" id="admin-close" type="button" data-i18n="admin.close"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sr-only" id="sr-live" aria-live="polite" aria-atomic="true"></div>
+  </div>
+  <noscript><p class="noscript">This game needs JavaScript enabled.</p></noscript>
+</body>
+</html>

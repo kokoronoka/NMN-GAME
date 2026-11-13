@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#2d1777"/>
+      <stop offset="0.6" stop-color="#160b3c"/>
+      <stop offset="1" stop-color="#0b0620"/>
+    </radialGradient>
+    <radialGradient id="glow" r="0.5">
+      <stop offset="0" stop-color="#a66bff" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#a66bff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orb" cx="0.36" cy="0.3" r="0.72">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.2" stop-color="#dcc0ff"/>
+      <stop offset="0.58" stop-color="#9a5cff"/>
+      <stop offset="1" stop-color="#4a1fb8"/>
+    </radialGradient>
+    <radialGradient id="atom" cx="0.35" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#f1dcff"/>
+      <stop offset="1" stop-color="#9a5cff"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="220" fill="url(#glow)"/>
+  <circle cx="256" cy="256" r="150" fill="url(#orb)"/>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="4"/>
+  <circle cx="372" cy="146" r="30" fill="url(#atom)"/>
+  <circle cx="148" cy="372" r="22" fill="url(#atom)"/>
+  <text x="256" y="258" text-anchor="middle" dominant-baseline="central" font-family="Syne, 'Arial Black', Arial, sans-serif" font-weight="800" font-size="66" fill="#fff" style="paint-order:stroke" stroke="#2a0b7a" stroke-opacity="0.35" stroke-width="6">NAD+</text>
+</svg>
